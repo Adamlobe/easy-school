@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Cadastro de Professor — EasySchool{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'professor_list' %}" class="btn btn-sm btn-outline-primary">Voltar</a>
+{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h1 class="h3 mb-4">Cadastro de Professor</h1>
+
+        <form method="POST" novalidate>
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <fieldset class="mb-4">
+                        <legend class="small text-muted"><strong>Dados do Professor</strong></legend>
+                        {{ professor_form.as_p }}
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2">
+                <a href="{% url 'professor_list' %}" class="btn btn-outline-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

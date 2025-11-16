@@ -1,0 +1,9 @@
+<h2>Excluir Aluno</h2>
+
+<p>Tem certeza que deseja excluir o aluno <strong>{{ aluno.nome }}</strong>?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Sim, excluir</button>
+    <a href="{% url 'aluno_list' %}">Cancelar</a>
+</form>

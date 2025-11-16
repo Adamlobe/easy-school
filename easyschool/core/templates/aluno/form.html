@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %}Cadastro de Aluno — EasySchool{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'aluno_list' %}" class="btn btn-sm btn-outline-primary">Voltar</a>
+{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h1 class="h3 mb-4">Cadastro de Aluno</h1>
+
+        <form method="POST" novalidate>
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <fieldset class="mb-4">
+                        <legend class="small text-muted"><strong>Dados do Aluno</strong></legend>
+
+                        {# Render fields explicitly em ordem desejada (ajuste os nomes caso o modelo/use outro) #}
+                        <div class="mb-3">
+                            {{ aluno_form.nome.label_tag }}
+                            {{ aluno_form.nome }}
+                            {{ aluno_form.nome.errors }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ aluno_form.genero.label_tag }}
+                            {{ aluno_form.genero }}
+                            {{ aluno_form.genero.errors }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ aluno_form.data_nascimento.label_tag }}
+                            {{ aluno_form.data_nascimento }}
+                            {{ aluno_form.data_nascimento.errors }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ aluno_form.turma.label_tag }}
+                            {{ aluno_form.turma }}
+                            {{ aluno_form.turma.errors }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ aluno_form.status.label_tag }}
+                            {{ aluno_form.status }}
+                            {{ aluno_form.status.errors }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ aluno_form.endereco.label_tag }}
+                            {{ aluno_form.endereco }}
+                            {{ aluno_form.endereco.errors }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ aluno_form.alergias.label_tag }}
+                            {{ aluno_form.alergias }}
+                            {{ aluno_form.alergias.errors }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ aluno_form.restricoes_alimentares.label_tag }}
+                            {{ aluno_form.restricoes_alimentares }}
+                            {{ aluno_form.restricoes_alimentares.errors }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ aluno_form.medicamentos.label_tag }}
+                            {{ aluno_form.medicamentos }}
+                            {{ aluno_form.medicamentos.errors }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ aluno_form.observacoes.label_tag }}
+                            {{ aluno_form.observacoes }}
+                            {{ aluno_form.observacoes.errors }}
+                        </div>
+
+                    </fieldset>
+                </div>
+
+                <div class="col-lg-6">
+                    <fieldset class="mb-4">
+                        <legend class="small text-muted"><strong>Responsáveis</strong></legend>
+                        {{ formset.management_form }}
+
+                        {% for form in formset %}
+                            <div class="card mb-3 border-0 shadow-sm p-3">
+                                {{ form.as_p }}
+                            </div>
+                        {% endfor %}
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2">
+                <a href="{% url 'aluno_list' %}" class="btn btn-outline-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

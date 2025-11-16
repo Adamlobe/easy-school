@@ -1,0 +1,262 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% block title %}EasySchool{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'core/css/aluno.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-light">
+<div class="app-shell d-flex">
+
+    <aside class="sidebar" id="app-sidebar" aria-hidden="false">
+        <div class="sidebar-top p-3 d-flex align-items-center gap-2">
+            <div class="brand-logo">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" fill="white" opacity="0.12"/>
+                    <path d="M7 12c0-2.761 2.239-5 5-5s5 2.239 5 5-2.239 5-5 5-5-2.239-5-5z" fill="white"/>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <div class="h6 mb-0 text-white">EasySchool</div>
+                <small class="d-block text-white-50">Gestão Escolar</small>
+            </div>
+        </div>
+
+        <nav class="nav flex-column mt-4 px-2" role="navigation">
+            <a class="nav-link d-flex align-items-center gap-2" href="{% url 'home' %}">
+                <span class="nav-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 11.5L12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V11.5z" fill="currentColor"/></svg>
+                </span>
+                <span class="nav-label">Início</span>
+            </a>
+
+            <!-- Alunos parent with collapsible submenu -->
+            <button class="nav-link nav-parent d-flex align-items-center gap-2" type="button" aria-expanded="false" data-menu="alunos" id="menu-alunos-toggle">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM3 20a9 9 0 0 1 18 0H3z" fill="currentColor"/></svg>
+                </span>
+                <span class="nav-label">Alunos</span>
+                <span class="ms-auto caret" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+            </button>
+
+            <div class="submenu" id="submenu-alunos" role="group" aria-hidden="true">
+                <a class="nav-sublink d-flex align-items-center gap-2" href="{% url 'aluno_list' %}">
+                    <span class="sublabel">Listar Alunos</span>
+                </a>
+                <a class="nav-sublink d-flex align-items-center gap-2" href="{% url 'aluno_create' %}">
+                    <span class="sublabel">Cadastrar Aluno</span>
+                </a>
+            </div>
+
+            <!-- Professores parent with collapsible submenu -->
+            <button class="nav-link nav-parent d-flex align-items-center gap-2" type="button" aria-expanded="false" data-menu="professores" id="menu-professores-toggle">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2" fill="currentColor"/><circle cx="12" cy="7" r="4" fill="currentColor"/></svg>
+                </span>
+                <span class="nav-label">Professores</span>
+                <span class="ms-auto caret" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+            </button>
+
+            <div class="submenu" id="submenu-professores" role="group" aria-hidden="true">
+                <a class="nav-sublink d-flex align-items-center gap-2" href="{% url 'professor_list' %}">
+                    <span class="sublabel">Listar Professores</span>
+                </a>
+                <a class="nav-sublink d-flex align-items-center gap-2" href="{% url 'professor_create' %}">
+                    <span class="sublabel">Cadastrar Professor</span>
+                </a>
+            </div>
+
+            <!-- Turmas parent with collapsible submenu -->
+            <button class="nav-link nav-parent d-flex align-items-center gap-2" type="button" aria-expanded="false" id="menu-turmas-toggle">
+                <span class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" fill="currentColor"/></svg>
+                </span>
+                <span class="nav-label">Turmas</span>
+                <span class="ms-auto caret" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+            </button>
+
+            <div class="submenu" id="submenu-turmas" role="group" aria-hidden="true">
+                <a class="nav-sublink d-flex align-items-center gap-2" href="{% url 'turma_list' %}">
+                    <span class="sublabel">Listar Turmas</span>
+                </a>
+                <a class="nav-sublink d-flex align-items-center gap-2" href="{% url 'turma_create' %}">
+                    <span class="sublabel">Cadastrar Turma</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer mt-auto p-3">
+            <small class="text-white-50">© {{ now.year }}</small>
+        </div>
+    </aside>
+
+    <main class="content flex-grow-1 p-4">
+        <header class="d-flex align-items-center justify-content-between mb-4">
+            <button id="sidebar-toggle" class="btn btn-sm btn-outline-primary" aria-expanded="true" aria-controls="app-sidebar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            {% block header_actions %}{% endblock %}
+        </header>
+
+        <div class="container-fluid">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+</div>
+
+<div id="mobile-overlay" class="mobile-overlay d-none"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function(){
+    const sidebar = document.getElementById('app-sidebar');
+    const toggle = document.getElementById('sidebar-toggle');
+    const overlay = document.getElementById('mobile-overlay');
+    const LS_KEY = 'easy_sidebar_collapsed';
+    const SUB_ALUNOS_KEY = 'easy_submenu_alunos_open';
+    const SUB_PROFESSORES_KEY = 'easy_submenu_professores_open';
+    const SUB_TURMAS_KEY = 'easy_submenu_turmas_open';
+    const menuAlunosToggle = document.getElementById('menu-alunos-toggle');
+    const submenuAlunos = document.getElementById('submenu-alunos');
+    const menuProfessoresToggle = document.getElementById('menu-professores-toggle');
+    const submenuProfessores = document.getElementById('submenu-professores');
+    const menuTurmasToggle = document.getElementById('menu-turmas-toggle');
+    const submenuTurmas = document.getElementById('submenu-turmas');
+
+    function setCollapsed(collapsed){
+        if(collapsed){
+            sidebar.classList.add('collapsed');
+            toggle.setAttribute('aria-expanded','false');
+            localStorage.setItem(LS_KEY,'1');
+        } else {
+            sidebar.classList.remove('collapsed');
+            toggle.setAttribute('aria-expanded','true');
+            localStorage.removeItem(LS_KEY);
+        }
+    }
+
+    // submenu state
+    function setSubmenuAlunos(open){
+        if(open){
+            submenuAlunos.classList.add('open');
+            submenuAlunos.setAttribute('aria-hidden','false');
+            menuAlunosToggle.setAttribute('aria-expanded','true');
+            localStorage.setItem(SUB_ALUNOS_KEY,'1');
+        } else {
+            submenuAlunos.classList.remove('open');
+            submenuAlunos.setAttribute('aria-hidden','true');
+            menuAlunosToggle.setAttribute('aria-expanded','false');
+            localStorage.removeItem(SUB_ALUNOS_KEY);
+        }
+    }
+
+    function setSubmenuProfessores(open){
+        if(open){
+            submenuProfessores.classList.add('open');
+            submenuProfessores.setAttribute('aria-hidden','false');
+            menuProfessoresToggle.setAttribute('aria-expanded','true');
+            localStorage.setItem(SUB_PROFESSORES_KEY,'1');
+        } else {
+            submenuProfessores.classList.remove('open');
+            submenuProfessores.setAttribute('aria-hidden','true');
+            menuProfessoresToggle.setAttribute('aria-expanded','false');
+            localStorage.removeItem(SUB_PROFESSORES_KEY);
+        }
+    }
+
+    function setSubmenuTurmas(open){
+        if(open){
+            submenuTurmas.classList.add('open');
+            submenuTurmas.setAttribute('aria-hidden','false');
+            menuTurmasToggle.setAttribute('aria-expanded','true');
+            localStorage.setItem(SUB_TURMAS_KEY,'1');
+        } else {
+            submenuTurmas.classList.remove('open');
+            submenuTurmas.setAttribute('aria-hidden','true');
+            menuTurmasToggle.setAttribute('aria-expanded','false');
+            localStorage.removeItem(SUB_TURMAS_KEY);
+        }
+    }
+
+    // initial states
+    setCollapsed(!!localStorage.getItem(LS_KEY));
+    setSubmenuAlunos(!!localStorage.getItem(SUB_ALUNOS_KEY));
+    setSubmenuProfessores(!!localStorage.getItem(SUB_PROFESSORES_KEY));
+    setSubmenuTurmas(!!localStorage.getItem(SUB_TURMAS_KEY));
+
+    toggle.addEventListener('click', function(e){
+        if(window.innerWidth <= 768){
+            const isOpen = sidebar.classList.contains('open');
+            if(isOpen){
+                sidebar.classList.remove('open');
+                overlay.classList.add('d-none');
+            } else {
+                sidebar.classList.add('open');
+                overlay.classList.remove('d-none');
+            }
+            return;
+        }
+        setCollapsed(!sidebar.classList.contains('collapsed'));
+    });
+
+    menuAlunosToggle.addEventListener('click', function(e){
+        // if sidebar is collapsed, expand it first on desktop
+        if(window.innerWidth > 768 && sidebar.classList.contains('collapsed')){
+            setCollapsed(false);
+            // small delay to show submenu smoothly
+            setTimeout(()=> setSubmenuAlunos(true), 150);
+            return;
+        }
+        const isOpen = submenuAlunos.classList.contains('open');
+        setSubmenuAlunos(!isOpen);
+    });
+
+    menuProfessoresToggle.addEventListener('click', function(e){
+        // if sidebar is collapsed, expand it first on desktop
+        if(window.innerWidth > 768 && sidebar.classList.contains('collapsed')){
+            setCollapsed(false);
+            // small delay to show submenu smoothly
+            setTimeout(()=> setSubmenuProfessores(true), 150);
+            return;
+        }
+        const isOpen = submenuProfessores.classList.contains('open');
+        setSubmenuProfessores(!isOpen);
+    });
+
+    menuTurmasToggle.addEventListener('click', function(e){
+        if(window.innerWidth > 768 && sidebar.classList.contains('collapsed')){
+            setCollapsed(false);
+            setTimeout(()=> setSubmenuTurmas(true), 150);
+            return;
+        }
+        const isOpen = submenuTurmas.classList.contains('open');
+        setSubmenuTurmas(!isOpen);
+    });
+
+    overlay.addEventListener('click', function(){
+        sidebar.classList.remove('open');
+        overlay.classList.add('d-none');
+    });
+
+    window.addEventListener('resize', function(){
+        if(window.innerWidth > 768){
+            sidebar.classList.remove('open');
+            overlay.classList.add('d-none');
+        }
+    });
+})();
+</script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

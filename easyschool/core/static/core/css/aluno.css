@@ -1,0 +1,324 @@
+:root{
+    /* cor corporativa: roxo com viés rosado */
+    --brand-50: #f7f0ff;
+    --brand-100: #f3e8ff;
+    --brand: #c084fc;      /* tom principal */
+    --brand-600: #a855f7;
+    --brand-700: #8b40e6;
+    --brand-800: #6d28d9;  /* tom escuro para hover */
+    --muted: #6b7280;
+    --card-bg: #ffffff;
+}
+
+/* Estilos customizados para o formulário de aluno */
+body.bg-light {
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg, #fbfbfe 0%, #f1eefb 100%);
+    color: #0f172a;
+}
+
+.card {
+    border-radius: 12px;
+    background: var(--card-bg);
+    border: 1px solid rgba(15,23,42,0.04);
+}
+
+.card .card-body h1 {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* fieldset mais elegante */
+fieldset {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid rgba(15,23,42,0.06);
+    box-shadow: 0 6px 18px rgba(15,23,42,0.03);
+}
+
+/* inputs */
+input[type="text"], input[type="email"], select, textarea {
+    border-radius: 8px;
+    border: 1px solid #e6e6f0;
+    padding: .55rem .75rem;
+    background-color: #fff;
+    width: 100%;
+    transition: box-shadow .18s ease, border-color .18s ease;
+}
+input[type="text"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+    border-color: var(--brand-600);
+    box-shadow: 0 6px 18px rgba(168,85,247,0.08);
+    outline: none;
+}
+
+/* labels */
+label {
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Botões: fundo branco por padrão, borda e texto na cor corporativa */
+.btn-primary {
+    background: #fff;
+    color: var(--brand-800);
+    border: 1px solid var(--brand);
+    border-radius: 8px;
+    padding: .5rem .85rem;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(109,40,217,0.04);
+    transition: all .18s ease;
+}
+
+/* hover: transforma no gradiente roxo (texto branco) */
+.btn-primary:hover, .btn-primary:focus {
+    background: linear-gradient(90deg, var(--brand-600), var(--brand-800));
+    color: #fff;
+    border-color: var(--brand-800);
+    box-shadow: 0 10px 30px rgba(109,40,217,0.12);
+}
+
+/* Botões outline também com borda roxa e fundo branco */
+.btn-outline-primary {
+    background: #fff;
+    color: var(--brand-700);
+    border: 1px solid rgba(160,120,250,0.9);
+    border-radius: 8px;
+    font-weight: 600;
+}
+.btn-outline-primary:hover {
+    background: linear-gradient(90deg, var(--brand-600), var(--brand-800));
+    color: #fff;
+    border-color: var(--brand-800);
+}
+
+/* Danger outline suavizado */
+.btn-outline-danger {
+    background: #fff;
+    color: #cc3b3b;
+    border-radius: 8px;
+}
+
+/* cartões internos */
+.card .card-body .card {
+    background: #faf9ff;
+    border: 1px solid rgba(160,120,250,0.06);
+}
+
+/* Estilos para a listagem de alunos */
+.alunos-card {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table thead {
+    border-bottom: 0;
+    background: linear-gradient(90deg, rgba(192,132,252,0.06), rgba(168,85,247,0.03));
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    padding: .9rem 1rem;
+}
+
+.table tbody tr:hover {
+    background: linear-gradient(90deg, rgba(168,85,247,0.03), rgba(109,40,217,0.02));
+}
+
+/* Badge com a cor corporativa para status especiais */
+.badge {
+    font-weight: 600;
+    padding: .45em .6em;
+    border-radius: .5rem;
+    text-transform: capitalize;
+}
+.badge-brand {
+    background: linear-gradient(90deg, var(--brand-100), var(--brand));
+    color: #3b0b61;
+    border: 1px solid rgba(168,85,247,0.12);
+}
+
+/* Links e ações */
+a {
+    color: var(--brand-700);
+    text-decoration: none;
+}
+a:hover { color: var(--brand-800); }
+
+/* ajuste botões pequenos */
+.btn-sm {
+    border-radius: 6px;
+    padding: .35rem .6rem;
+}
+
+/* pequenos ajustes para telas menores */
+@media (max-width: 576px) {
+    .table thead { display: none; }
+    .table tbody td {
+        display: block;
+        width: 100%;
+    }
+    .table tbody tr {
+        margin-bottom: .75rem;
+        display: block;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 6px 18px rgba(15,23,42,0.03);
+        padding: .75rem;
+    }
+    .table tbody td.text-end { text-align: left !important; margin-top: .5rem; }
+}
+
+/* Ajustes responsivos menores */
+@media (max-width: 768px) {
+    .card { margin: 0 0.5rem; }
+    fieldset { padding: .75rem; }
+}
+
+/* Sidebar / layout */
+.app-shell {
+    min-height: 100vh;
+}
+
+/* sidebar with corporate purple (rosado) */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, var(--brand-600), var(--brand-800));
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255,255,255,0.04);
+    box-shadow: 4px 0 18px rgba(109,40,217,0.06);
+}
+
+.sidebar-top {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.brand-logo svg { display: block; }
+.brand-text .text-white-50 { opacity: .9; font-size: .8rem; }
+
+/* nav links */
+.sidebar .nav {
+    padding-left: .5rem;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.95);
+    padding: .8rem .9rem;
+    border-radius: 8px;
+    margin: .25rem 0;
+    transition: background .12s ease, transform .06s ease;
+}
+.nav-link .nav-icon svg { color: #fff; display: block; }
+.nav-link .nav-label { font-weight: 600; }
+
+.nav-link:hover, .nav-link:focus {
+    background: rgba(255,255,255,0.06);
+    transform: translateY(-1px);
+    text-decoration: none;
+}
+
+/* submenu styles (Alunos) */
+.submenu {
+    display: none;
+    flex-direction: column;
+    padding-left: 12px;
+    margin-top: 6px;
+    transition: max-height .18s ease, opacity .12s ease;
+    overflow: hidden;
+}
+.submenu.open {
+    display: flex;
+}
+.nav-sublink {
+    color: rgba(255,255,255,0.92);
+    padding: .5rem .8rem;
+    border-radius: 6px;
+    margin: .15rem 0;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+.nav-sublink .sublabel { margin-left: 6px; color: rgba(255,255,255,0.95); font-weight: 600; }
+
+/* caret rotation when open */
+.nav-parent .caret {
+    transition: transform .18s ease;
+    opacity: .9;
+}
+.submenu.open + .placeholder { /* no-op placeholder to keep specificity */ }
+.nav-parent[aria-expanded="true"] .caret {
+    transform: rotate(180deg);
+}
+
+/* hide submenu when sidebar is collapsed */
+.sidebar.collapsed .submenu,
+.sidebar.collapsed .nav-sublink,
+.sidebar.collapsed .nav-parent .caret {
+    display: none !important;
+}
+
+/* ensure submenu items look distinct on hover */
+.nav-sublink:hover {
+    background: rgba(255,255,255,0.06);
+    transform: translateY(-1px);
+    text-decoration: none;
+}
+
+/* small screens: submenu appears inside mobile drawer normally */
+@media (max-width: 768px) {
+    .submenu { padding-left: 0.5rem; }
+    .nav-sublink { padding-left: 1rem; }
+}
+
+/* ensure svg icons use currentColor (white) */
+.nav-icon svg { color: #fff; }
+.nav-icon svg path { fill: currentColor; }
+
+/* footer */
+.sidebar-footer { border-top: 1px solid rgba(255,255,255,0.04); }
+
+/* main content adjustments */
+.content {
+    background: linear-gradient(180deg, #fbfbfe 0%, #f1eefb 100%);
+    min-height: 100vh;
+}
+
+/* sidebar collapsed state */
+.sidebar.collapsed {
+    width: 72px;
+}
+.sidebar.collapsed .brand-text,
+.sidebar.collapsed .nav-label {
+    display: none;
+}
+.sidebar.collapsed .brand-logo { margin-right: 0.25rem; }
+.content { transition: margin-left .18s ease; }
+
+/* when collapsed, reduce left padding on main content */
+@media (min-width: 769px) {
+    .sidebar { width: 260px; }
+    .sidebar.collapsed ~ .content { padding-left: 1rem; }
+}
+
+/* mobile overlay used when sidebar opens */
+.mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.36);
+    z-index: 1040;
+}
+
+/* small cosmetic for the toggle button */
+#sidebar-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+}
+
+/* ensure transitions are smooth */
+.sidebar, .brand-text, .nav-label {
+    transition: width .18s ease, opacity .12s ease, transform .12s ease;
+}
